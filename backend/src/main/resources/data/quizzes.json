@@ -1,0 +1,120 @@
+{
+  "m-01": [
+    {
+      "id": "q-01-01",
+      "question": "What best describes an AI Agent?",
+      "options": [
+        "A static program that executes fixed instructions",
+        "A software entity that perceives, reasons, and acts to achieve goals",
+        "A database that stores AI model weights",
+        "A UI component for interacting with APIs"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "An AI Agent is defined by its ability to autonomously perceive its environment, reason using a model, and take actions towards a goal — distinguishing it from traditional static software."
+    },
+    {
+      "id": "q-01-02",
+      "question": "Which of these is NOT a key characteristic of an AI Agent?",
+      "options": [
+        "Autonomy",
+        "Reactivity",
+        "Determinism",
+        "Social Ability"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "Determinism means an output is always the same given the same input. AI Agents, especially LLM-based ones, are often non-deterministic. The four key properties are Autonomy, Reactivity, Proactivity, and Social Ability."
+    }
+  ],
+  "m-02": [
+    {
+      "id": "q-02-01",
+      "question": "In the Agent Loop, what happens in the 'Think' phase?",
+      "options": [
+        "The agent receives data from its environment",
+        "The agent stores results to a database",
+        "The agent uses reasoning to decide the next best action",
+        "The agent sends a notification to the user"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "The 'Think' phase is where the agent's LLM or reasoning model processes its observations and decides what to do next. This is the core intelligence step."
+    },
+    {
+      "id": "q-02-02",
+      "question": "What does the 'Act' phase of the agent loop involve?",
+      "options": [
+        "Collecting data from sensors",
+        "Executing the chosen action such as calling a tool or API",
+        "Training the AI model",
+        "Generating the agent's system prompt"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "In the 'Act' phase, the agent executes its decision — this could be calling a tool, writing to a file, sending a message, or making an API call to affect the external world."
+    }
+  ],
+  "m-03": [
+    {
+      "id": "q-03-01",
+      "question": "How does an agent's LLM know when to call a specific tool?",
+      "options": [
+        "Tools are hardcoded into the agent's training",
+        "The agent randomly selects a tool each turn",
+        "Each tool is defined with a name, description, and input schema that the LLM reads",
+        "Tools are only called when the user explicitly asks for them"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "Tools are declared to the LLM using a name, description, and parameter schema. The LLM reads these definitions and decides autonomously when a tool is appropriate to use."
+    }
+  ],
+  "m-04": [
+    {
+      "id": "q-04-01",
+      "question": "What is the main limitation of short-term memory in AI agents?",
+      "options": [
+        "It is too slow to be useful",
+        "It is limited to the context window size of the LLM",
+        "It can only store images, not text",
+        "It requires a separate database to function"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "Short-term memory is the agent's active context window. While very fast, it is limited in size — when the conversation grows too long, older information must be dropped or summarized."
+    },
+    {
+      "id": "q-04-02",
+      "question": "How do AI agents typically retrieve information from long-term memory?",
+      "options": [
+        "By iterating through all stored records linearly",
+        "By using a hardcoded ID lookup",
+        "By using semantic search in a vector database",
+        "By asking the user to provide the information again"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "Long-term memory is stored in vector databases. Agents retrieve relevant memories using semantic (meaning-based) search, which finds conceptually similar content even if the wording differs."
+    }
+  ],
+  "m-05": [
+    {
+      "id": "q-05-01",
+      "question": "What is the primary role of an Orchestrator agent?",
+      "options": [
+        "To write all the code for the project",
+        "To break down complex goals into sub-tasks and delegate to specialized Worker agents",
+        "To train the AI models used by other agents",
+        "To handle user authentication and security"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": "An Orchestrator agent's job is coordination. It decomposes a large goal into smaller sub-tasks and routes those tasks to specialized Worker agents, then aggregates the results."
+    },
+    {
+      "id": "q-05-02",
+      "question": "Which multi-agent communication pattern allows agents to work simultaneously?",
+      "options": [
+        "Sequential",
+        "Hierarchical",
+        "Parallel",
+        "Cascading"
+      ],
+      "correctAnswerIndex": 2,
+      "explanation": "In a Parallel pattern, multiple agents execute at the same time and their results are merged afterwards. This dramatically reduces total execution time for complex tasks."
+    }
+  ]
+}

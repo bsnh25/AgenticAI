@@ -25,9 +25,9 @@
 
 ## MVP Success Criteria
 
-- [ ] User can complete at least 5 structured learning modules on Agentic AI.
-- [ ] Each module includes: Overview, Core Concepts, Interactive Quiz, and Summary card.
-- [ ] App works fully offline (all MVP content is local/cached).
+- [ ] User can complete learning modules across 3 difficulty tiers (Easy, Medium, Hard).
+- [ ] Each module includes: Reading materials and an Interactive Quiz.
+- [ ] App dynamically fetches learning materials and quizzes from the Backend API as JSON.
 - [ ] App achieves a minimum of 4.0-star UX rating in internal usability testing.
 - [ ] App passes all accessibility checks (TalkBack, font scaling).
 - [ ] App is ready for internal APK distribution (alpha track).
@@ -63,15 +63,15 @@
 
 ## Epic 2 — Learning Modules
 
-### US-003: Module List (Explore Screen)
+### US-003: Module List by Difficulty (Explore Screen)
 **As a** user,
-**I want to** browse all available learning modules organized by topic,
-**So that** I can choose what to learn next based on my interests.
+**I want to** browse available learning materials organized into Easy, Medium, and Hard tiers,
+**So that** I can choose materials that match my current knowledge level.
 
 **Acceptance Criteria:**
-- [ ] Modules are grouped under categories: "Foundations", "Architecture", "Tools & Frameworks", "Real-World Applications".
-- [ ] Each module card shows: title, category tag, difficulty badge (Beginner/Intermediate/Advanced), duration, and completion state.
-- [ ] A search bar allows filtering modules by keyword.
+- [ ] Content is strictly categorized into 3 sections: Easy, Medium, Hard.
+- [ ] The app fetches the list of available modules for these levels from the Backend API.
+- [ ] Each module card shows: title, estimated duration, and completion state.
 
 ### US-004: Module Detail & Reader Screen
 **As a** user,
@@ -90,8 +90,9 @@
 **So that** I can test my understanding and reinforce my learning.
 
 **Acceptance Criteria:**
-- [ ] Quiz has 3-5 multiple-choice questions per module.
-- [ ] Immediate feedback is given after each answer (correct/incorrect with explanation).
+- [ ] Quiz is dynamically fetched from the Backend API as a JSON payload for the specific module.
+- [ ] Quiz JSON includes the question, multiple choice options, and the correct answer.
+- [ ] Immediate feedback is given after each answer (validated on the client-side for the MVP).
 - [ ] A score summary screen is shown at the end with a "Retry" and "Next Module" button.
 - [ ] A streak counter tracks consecutive daily quiz completions.
 
@@ -140,7 +141,7 @@
 
 ## Out of Scope for MVP
 
-- User authentication / cloud sync via the Backend (The Spring Boot API framework is being scaffolded in Sprint 1, but offline usage remains the primary fallback for the MVP).
+- User authentication / cloud sync via the Backend (The Spring Boot API framework provides the content, but user identity is not yet managed).
 - Social features (leaderboards, sharing).
 - Video content.
 - In-app purchases or subscriptions.

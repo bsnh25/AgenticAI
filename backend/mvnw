@@ -1,0 +1,18 @@
+#!/bin/sh
+# Maven Wrapper script
+# Auto-downloads Maven if not present
+
+MAVEN_WRAPPER_JAR=".mvn/wrapper/maven-wrapper.jar"
+MAVEN_WRAPPER_PROPERTIES=".mvn/wrapper/maven-wrapper.properties"
+
+if [ -f "$MAVEN_WRAPPER_JAR" ]; then
+    exec java -jar "$MAVEN_WRAPPER_JAR" "$@"
+else
+    # Fallback: attempt to use system mvn
+    if command -v mvn > /dev/null 2>&1; then
+        exec mvn "$@"
+    else
+        echo "ERROR: Maven not found. Please install Maven or run: brew install maven"
+        exit 1
+    fi
+fi

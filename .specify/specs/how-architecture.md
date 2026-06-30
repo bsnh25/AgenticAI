@@ -76,8 +76,7 @@ Composable ◄── collectAsStateWithLifecycle ◄── StateFlow<UiState>
 data class LearningModule(
     val id: String,
     val title: String,
-    val category: ModuleCategory,
-    val difficulty: Difficulty,
+    val difficulty: DifficultyLevel,
     val estimatedMinutes: Int,
     val sections: List<ModuleSection>,
     val quiz: Quiz?,
@@ -85,8 +84,7 @@ data class LearningModule(
     val progressPercent: Float
 )
 
-enum class ModuleCategory { FOUNDATIONS, ARCHITECTURE, TOOLS, REAL_WORLD }
-enum class Difficulty { BEGINNER, INTERMEDIATE, ADVANCED }
+enum class DifficultyLevel { EASY, MEDIUM, HARD }
 
 data class GlossaryTerm(
     val id: String,
@@ -158,35 +156,42 @@ All DI is managed by Hilt. Module scoping:
 
 ---
 
-## 6. Local Database (Room)
+## 6. Local Database (Room) — Caching Layer
 
 **Entities**: `ModuleEntity`, `GlossaryTermEntity`, `UserProgressEntity`, `QuizResultEntity`
 
 ```sql
--- Module completion is tracked per ID
+-- Module completion and offline caching
 CREATE TABLE module_progress (
     module_id TEXT PRIMARY KEY,
     is_completed INTEGER NOT NULL DEFAULT 0,
     progress_percent REAL NOT NULL DEFAULT 0.0,
+    cached_content TEXT, -- JSON snapshot of the module from backend
     last_accessed INTEGER  -- Unix timestamp
 );
 ```
 
 ---
 
-## 7. Network Layer (Retrofit) — Future Readiness
+## 7. Network Layer (Retrofit) — Online Backend API
 
 **Tech Stack**: Retrofit 3.0.0 (Gson Converter), OkHttp 5.3.2 Interceptors, Chucker 4.2.0 (debug builds only).
 All responses wrapped in `BaseDto<T>`.
-MVP content is bundled as JSON assets. The network layer is scaffolded but not active in MVP.
+The frontend strictly fetches reading materials and quizzes from the Spring Boot API.
 
 ```kotlin
 interface LearningApiService {
-    @GET("modules")
-    suspend fun getModules(): Response<List<ModuleDto>>
+    // Fetches modules grouped by Easy, Medium, Hard
+    @GET("api/v1/modules/level/{level}")
+    suspend fun getModulesByLevel(@Path("level") level: String): Response<BaseDto<List<ModuleDto>>>
 
-    @GET("modules/{id}")
-    suspend fun getModuleById(@Path("id") id: String): Response<ModuleDto>
+    // Fetches the specific module reading material and its interactive quiz JSON array
+    @GET("api/v1/modules/{id}")
+    suspend fun getModuleById(@Path("id") id: String): Response<BaseDto<ModuleDetailDto>>
+    
+    // Explicitly fetch only the quiz for a module
+    @GET("api/v1/modules/{id}/quiz")
+    suspend fun getQuizForModule(@Path("id") id: String): Response<BaseDto<List<QuizQuestionDto>>>
 }
 ```
 
@@ -246,7 +251,8 @@ Push to PR branch
 ### Reactive Layering
 - **Controller Layer**: `@RestController` returning `Mono<T>` or `Flux<T>`.
 - **Service Layer**: Implements `BaseUseCase` using the Template Method pattern (Validate -> Process -> Format).
-- **Blocking Safety**: All JPA calls MUST be wrapped in `subscribeOn(Schedulers.boundedElastic())` to prevent blocking the Netty event loop.
+- **Data Source (MVP)**: For Sprint 1, to keep things simple, the learning materials and quizzes will be served from **static JSON files** embedded in the Spring Boot `resources/` folder. The Oracle DB integration (JPA) is scaffolded but not strictly required for serving the static reading content yet.
+- **Blocking Safety**: All JPA calls (when used) MUST be wrapped in `subscribeOn(Schedulers.boundedElastic())` to prevent blocking the Netty event loop.
 
 ### Observability & Standards
 - **Logging**: ECS Structured Logging via `CommonLogger` for all major workflow steps.

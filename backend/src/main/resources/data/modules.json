@@ -1,0 +1,81 @@
+[
+  {
+    "id": "m-01",
+    "title": "What is an AI Agent?",
+    "level": "EASY",
+    "estimatedMinutes": 8,
+    "description": "An introduction to the fundamental concept of an AI Agent and how it differs from traditional software.",
+    "sections": [
+      { "type": "heading", "content": "Definition" },
+      { "type": "text", "content": "An AI Agent is a software entity that perceives its environment through inputs, processes information using a reasoning model, and takes actions to achieve a defined goal." },
+      { "type": "heading", "content": "Key Characteristics" },
+      { "type": "bullet", "content": "Autonomy: Operates without constant human direction." },
+      { "type": "bullet", "content": "Reactivity: Responds to changes in its environment." },
+      { "type": "bullet", "content": "Proactivity: Takes initiative to achieve goals." },
+      { "type": "bullet", "content": "Social Ability: Interacts with other agents or humans." }
+    ]
+  },
+  {
+    "id": "m-02",
+    "title": "The Agent Loop: Perceive → Think → Act",
+    "level": "EASY",
+    "estimatedMinutes": 10,
+    "description": "Explore the core loop that drives every AI agent's behavior.",
+    "sections": [
+      { "type": "heading", "content": "The Core Loop" },
+      { "type": "text", "content": "Every AI agent runs a continuous loop: it perceives its current state, reasons about what to do, and then acts. This cycle repeats until the goal is achieved." },
+      { "type": "heading", "content": "Phase 1: Perceive" },
+      { "type": "text", "content": "The agent receives observations from its environment — this could be text, API responses, sensor data, or any other structured input." },
+      { "type": "heading", "content": "Phase 2: Think" },
+      { "type": "text", "content": "The agent uses an LLM or a rule-based system to reason about the observations and decide the next best action." },
+      { "type": "heading", "content": "Phase 3: Act" },
+      { "type": "text", "content": "The agent executes the chosen action — calling a tool, writing a file, sending a message, or making an API call." }
+    ]
+  },
+  {
+    "id": "m-03",
+    "title": "Tools & Tool Use in Agents",
+    "level": "MEDIUM",
+    "estimatedMinutes": 12,
+    "description": "Understanding how agents use tools to interact with the external world.",
+    "sections": [
+      { "type": "heading", "content": "What is a Tool?" },
+      { "type": "text", "content": "A tool is a function or API that an agent can call to perform an action beyond its own reasoning. Tools allow agents to search the web, write code, query databases, and more." },
+      { "type": "heading", "content": "Tool Definition" },
+      { "type": "text", "content": "Tools are defined with a name, description, and a schema for their input parameters. The agent's LLM reads these definitions and decides when and how to call them." },
+      { "type": "bullet", "content": "web_search(query: String): Searches the internet." },
+      { "type": "bullet", "content": "read_file(path: String): Reads a file from disk." },
+      { "type": "bullet", "content": "execute_code(code: String): Runs code in a sandbox." }
+    ]
+  },
+  {
+    "id": "m-04",
+    "title": "Memory: Short-Term vs Long-Term",
+    "level": "MEDIUM",
+    "estimatedMinutes": 10,
+    "description": "How AI agents remember information across turns and tasks.",
+    "sections": [
+      { "type": "heading", "content": "Short-Term Memory" },
+      { "type": "text", "content": "Short-term memory is the agent's context window — the conversation history and intermediate results it holds in memory during a single session. It is fast but limited." },
+      { "type": "heading", "content": "Long-Term Memory" },
+      { "type": "text", "content": "Long-term memory is stored externally in a vector database, knowledge base, or traditional database. Agents retrieve relevant memories using semantic search to inform their reasoning." }
+    ]
+  },
+  {
+    "id": "m-05",
+    "title": "Multi-Agent Systems & Orchestration",
+    "level": "HARD",
+    "estimatedMinutes": 15,
+    "description": "How multiple specialized agents collaborate to solve complex problems.",
+    "sections": [
+      { "type": "heading", "content": "Why Multi-Agent?" },
+      { "type": "text", "content": "A single agent has limited context and capabilities. Multi-agent systems use a swarm of specialized agents — each an expert in a narrow domain — that work in parallel, dramatically increasing capability and reliability." },
+      { "type": "heading", "content": "Orchestrator vs. Worker" },
+      { "type": "text", "content": "An Orchestrator agent breaks down a complex goal into sub-tasks and delegates them to specialized Worker agents. The Orchestrator then aggregates the results." },
+      { "type": "heading", "content": "Communication Patterns" },
+      { "type": "bullet", "content": "Sequential: Each agent's output is the next agent's input." },
+      { "type": "bullet", "content": "Parallel: Multiple agents work simultaneously, and results are merged." },
+      { "type": "bullet", "content": "Hierarchical: A tree of orchestrators and workers." }
+    ]
+  }
+]
