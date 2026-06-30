@@ -14,7 +14,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
+    kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) } }
     buildFeatures { compose = true }
 }
 
@@ -23,10 +23,10 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:data"))
     implementation(project(":core:common"))
-    implementation(deps.libraries.hilt.android)
-    ksp(deps.libraries.hilt.android.compiler)
-    implementation(deps.libraries.hilt.navigation.compose)
-    implementation(deps.libraries.lifecycle.viewmodel.compose)
-    implementation(deps.libraries.lifecycle.runtime.compose)
-    implementation(deps.libraries.navigation.compose)
+    implementation(deps.hilt.android)
+    ksp(deps.hilt.android.compiler)
+    implementation(deps.hilt.navigation.compose)
+    implementation(deps.lifecycle.viewmodel.compose)
+    implementation(deps.lifecycle.runtime.compose)
+    implementation(deps.navigation.compose)
 }

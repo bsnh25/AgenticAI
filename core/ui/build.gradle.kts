@@ -13,16 +13,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
+    kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) } }
     buildFeatures { compose = true }
 }
 
 dependencies {
-    api(platform(deps.libraries.compose.bom))
-    api(deps.libraries.compose.ui)
-    api(deps.libraries.compose.ui.graphics)
-    api(deps.libraries.compose.ui.tooling.preview)
-    api(deps.libraries.compose.material3)
-    api(deps.libraries.compose.material.icons)
-    debugImplementation(deps.libraries.compose.ui.tooling)
+    api(platform(deps.compose.bom))
+    api(deps.compose.ui)
+    api(deps.compose.ui.graphics)
+    api(deps.compose.ui.tooling.preview)
+    api(deps.compose.material3)
+    api(deps.compose.material.icons)
+    debugImplementation(deps.compose.ui.tooling)
 }

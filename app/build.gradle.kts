@@ -54,8 +54,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
     }
 
     buildFeatures {
@@ -83,37 +83,37 @@ dependencies {
     implementation(project(":feature:profile"))
 
     // Core
-    implementation(deps.libraries.core.ktx)
-    implementation(deps.libraries.activity.compose)
+    implementation(deps.core.ktx)
+    implementation(deps.activity.compose)
 
     // Compose BOM
-    implementation(platform(deps.libraries.compose.bom))
-    implementation(deps.libraries.compose.ui)
-    implementation(deps.libraries.compose.ui.graphics)
-    implementation(deps.libraries.compose.ui.tooling.preview)
-    implementation(deps.libraries.compose.material3)
+    implementation(platform(deps.compose.bom))
+    implementation(deps.compose.ui)
+    implementation(deps.compose.ui.graphics)
+    implementation(deps.compose.ui.tooling.preview)
+    implementation(deps.compose.material3)
 
     // Hilt
-    implementation(deps.libraries.hilt.android)
-    ksp(deps.libraries.hilt.android.compiler)
+    implementation(deps.hilt.android)
+    ksp(deps.hilt.android.compiler)
 
     // Navigation
-    implementation(deps.libraries.navigation.compose)
-    implementation(deps.libraries.hilt.navigation.compose)
+    implementation(deps.navigation.compose)
+    implementation(deps.hilt.navigation.compose)
 
     // Lifecycle
-    implementation(deps.libraries.lifecycle.runtime.ktx)
-    implementation(deps.libraries.lifecycle.viewmodel.compose)
-    implementation(deps.libraries.lifecycle.runtime.compose)
+    implementation(deps.lifecycle.runtime.ktx)
+    implementation(deps.lifecycle.viewmodel.compose)
+    implementation(deps.lifecycle.runtime.compose)
 
     // Debug tools
-    debugImplementation(deps.libraries.compose.ui.tooling)
-    debugImplementation(deps.libraries.compose.ui.test.manifest)
+    debugImplementation(deps.compose.ui.tooling)
+    debugImplementation(deps.compose.ui.test.manifest)
 
     // Test
-    testImplementation(deps.libraries.junit)
-    androidTestImplementation(deps.libraries.junit.android)
-    androidTestImplementation(deps.libraries.espresso)
-    androidTestImplementation(platform(deps.libraries.compose.bom))
-    androidTestImplementation(deps.libraries.compose.ui.test.junit4)
+    testImplementation(deps.junit)
+    androidTestImplementation(deps.junit.android)
+    androidTestImplementation(deps.espresso)
+    androidTestImplementation(platform(deps.compose.bom))
+    androidTestImplementation(deps.compose.ui.test.junit4)
 }

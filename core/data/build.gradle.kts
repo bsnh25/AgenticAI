@@ -13,7 +13,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
+    kotlin { compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) } }
 }
 
 dependencies {
@@ -21,25 +21,25 @@ dependencies {
     implementation(project(":core:common"))
 
     // Hilt
-    implementation(deps.libraries.hilt.android)
-    ksp(deps.libraries.hilt.android.compiler)
+    implementation(deps.hilt.android)
+    ksp(deps.hilt.android.compiler)
 
     // Room
-    implementation(deps.libraries.room.runtime)
-    implementation(deps.libraries.room.ktx)
-    ksp(deps.libraries.room.compiler)
+    implementation(deps.room.runtime)
+    implementation(deps.room.ktx)
+    ksp(deps.room.compiler)
 
     // Retrofit
-    implementation(deps.libraries.retrofit)
-    implementation(deps.libraries.retrofit.gson)
-    implementation(deps.libraries.okhttp)
-    implementation(deps.libraries.okhttp.logging)
-    implementation(deps.libraries.gson)
+    implementation(deps.retrofit)
+    implementation(deps.retrofit.gson)
+    implementation(deps.okhttp)
+    implementation(deps.okhttp.logging)
+    implementation(deps.gson)
 
     // Chucker (debug only)
-    debugImplementation(deps.libraries.chucker)
-    releaseImplementation(deps.libraries.chucker.no.op)
+    debugImplementation(deps.chucker)
+    releaseImplementation(deps.chucker.no.op)
 
-    implementation(deps.libraries.coroutines.android)
-    implementation(deps.libraries.core.ktx)
+    implementation(deps.coroutines.android)
+    implementation(deps.core.ktx)
 }
