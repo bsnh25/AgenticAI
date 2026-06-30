@@ -1,0 +1,7 @@
+# Project-specific library versions (Avatar design system, internal tools)
+[versions]
+interphases-font = "1.0.0"
+
+[libraries]
+# Placeholder for future Avatar Design System internal library
+# learnai-avatar = { group = "com.learnagentic", name = "avatar-design-system", version.ref = "interphases-font" }
