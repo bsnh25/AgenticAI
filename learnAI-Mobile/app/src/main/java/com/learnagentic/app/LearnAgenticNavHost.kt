@@ -11,13 +11,24 @@ import com.learnagentic.core.common.navigation.Screen
  * Each feature screen is wired here; ViewModels are injected by Hilt.
  */
 @Composable
-fun LearnAgenticNavHost() {
+fun LearnAgenticNavHost(
+    startDestination: String = Screen.Home.route
+) {
     val navController = rememberNavController()
 
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route
+        startDestination = startDestination
     ) {
+        composable(Screen.Onboarding.route) {
+            com.learnagentic.feature.onboarding.OnboardingScreen(
+                onFinished = {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Onboarding.route) { inclusive = true }
+                    }
+                }
+            )
+        }
         composable(Screen.Home.route) {
             com.learnagentic.feature.home.HomeScreen(
                 onModuleClick = { moduleId -> 

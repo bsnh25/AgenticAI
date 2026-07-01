@@ -42,4 +42,5 @@ dependencies {
 
     implementation(deps.coroutines.android)
     implementation(deps.core.ktx)
+    implementation(deps.datastore.preferences)
 }

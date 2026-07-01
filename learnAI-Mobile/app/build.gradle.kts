@@ -79,6 +79,7 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:explore"))
     implementation(project(":feature:reader"))
+    implementation(project(":feature:onboarding"))
     implementation(project(":feature:glossary"))
     implementation(project(":feature:profile"))
 
@@ -103,6 +104,8 @@ dependencies {
 
     // Lifecycle
     implementation(deps.lifecycle.runtime.ktx)
+    implementation(deps.activity.compose)
+    implementation(deps.core.splashscreen)
     implementation(deps.lifecycle.viewmodel.compose)
     implementation(deps.lifecycle.runtime.compose)
 
